@@ -1,20 +1,20 @@
 <template>
   <div class="row">
-    <form class="col s12">
+    <form class="col s12" v-on:submit.prevent="onSubmit">
       <div class="input-field col s2">
-        <input id="cast_name" type="text" class="validate">
+        <input v-model="query_cast" id="cast_name" type="text" class="validate">
         <label for="cast_name">Cast</label>
       </div>
       <div class="input-field col s2">
-        <input id="title" type="text" class="validate">
+        <input v-model="query_title" id="title" type="text" class="validate">
         <label for="title">Title</label>
       </div>
       <div class="input-field col s2">
-        <input id="note" type="text" class="validate">
+        <input v-model="query_note" id="note" type="text" class="validate">
         <label for="note">Note</label>
       </div>
       <div class="input-field col s2">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <button v-on:click="searchEpisodes" class="btn waves-effect waves-light" type="submit" name="action">Submit
           <i class="material-icons right">search</i>
         </button>
       </div>
@@ -45,15 +45,34 @@
     data: function () {
       return {
         episodes: [],
+        query_cast: '',
+        query_title: '',
+        query_note: '',
       }
     },
     mounted: function () {
-      this.searchEpisodes();
+      this.fetchEpisodes();
     },
     methods: {
-      searchEpisodes: function () {
+      fetchEpisodes: function () {
         axios.get('api/episodes').then((resp) => {
           resp.data.episodes.forEach(e => this.episodes.push(e))
+        }, (error) => {
+          console.log(error);
+        })
+      },
+      searchEpisodes: function () {
+        axios.get('api/episodes', {
+          params: {
+            cast: this.query_cast,
+            title: this.query_title,
+            note: this.query_note,
+          }
+        }).then((resp) => {
+          this.episodes = []
+          resp.data.episodes.forEach(e => this.episodes.push(e))
+        }, (error) => {
+          console.log(error);
         })
       },
     }

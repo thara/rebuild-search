@@ -3,7 +3,20 @@ class Api::EpisodesController < ApplicationController
 
   # GET /episodes
   def index
-    @episodes = Episode.all
+    q = Episode.all
+
+    unless params[:note].blank?
+      note = params[:note].to_s
+      q = q.where('title LIKE ?', "%#{note}%").or(Episode.where('description LIKE ?', "%#{note}%"))
+    end
+    unless params[:title].blank?
+      q = q.where('title LIKE ?', "%#{params[:title].to_s}%")
+    end
+    # unless params[:cast].blank?
+    #   cast = params[:cast].to_s
+    # end
+
+    @episodes = q
     render json: @episodes, root: "episodes", adapter: :json
   end
 
