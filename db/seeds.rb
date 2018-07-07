@@ -5,3 +5,4 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+3.times {|n| Episode.create!(episode_no: 1000 + n, title: 'Sample',  link: 'http://example.com', description: 'details', subtitle: 'SUBTITLE') }
