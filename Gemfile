@@ -61,3 +61,5 @@ gem 'active_model_serializers', '~> 0.9.3'
 gem 'jquery-rails'
 gem 'materialize-sass'
 gem 'material_icons'
+
+gem 'activerecord-import', '~> 0.15.0'
