@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180707112008) do
+ActiveRecord::Schema.define(version: 20180707155317) do
 
   create_table "cast_members", force: :cascade do |t|
     t.string "name", null: false
     t.string "url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_cast_members_on_name"
   end
 
   create_table "contributions", force: :cascade do |t|
@@ -36,6 +37,8 @@ ActiveRecord::Schema.define(version: 20180707112008) do
     t.string "subtitle", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["description"], name: "index_episodes_on_description"
+    t.index ["title"], name: "index_episodes_on_title"
   end
 
 end
