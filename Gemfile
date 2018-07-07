@@ -57,3 +57,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'foreman'
 gem 'active_model_serializers', '~> 0.9.3'
+
+gem 'jquery-rails'
+gem 'materialize-sass'
+gem 'material_icons'
