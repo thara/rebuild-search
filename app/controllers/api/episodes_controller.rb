@@ -1,12 +1,10 @@
 class Api::EpisodesController < ApplicationController
+  serialization_scope :view_context
 
   # GET /episodes
   def index
-    episodes = Episode.all
-    render json: ActiveModel::ArraySerializer.new(
-        episodes,
-        each_serializer: EpisodeSerializer
-      ).to_json
+    @episodes = Episode.all
+    render json: @episodes, root: "episodes", adapter: :json
   end
 
 end
