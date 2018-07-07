@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180707075833) do
+ActiveRecord::Schema.define(version: 20180707112008) do
+
+  create_table "cast_members", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "url", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contributions", force: :cascade do |t|
+    t.integer "episode_id"
+    t.integer "cast_member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cast_member_id"], name: "index_contributions_on_cast_member_id"
+    t.index ["episode_id"], name: "index_contributions_on_episode_id"
+  end
 
   create_table "episodes", force: :cascade do |t|
     t.integer "episode_no", null: false
