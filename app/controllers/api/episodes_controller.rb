@@ -13,10 +13,10 @@ class Api::EpisodesController < ApplicationController
       q = q.where('title LIKE ?', "%#{params[:title].to_s}%")
     end
     unless params[:cast].blank?
-      q = q.joins(:contribution, :cast_member).where('cast_members.name LIKE ?', "%#{params[:cast].to_s}%").uniq
+      q = q.joins(:contributions, :cast_members).where('cast_members.name LIKE ?', "%#{params[:cast].to_s}%").uniq
     end
 
-    @episodes = q
+    @episodes = q.limit(30)
     render json: @episodes, root: "episodes", adapter: :json
   end
 

@@ -1,4 +1,4 @@
 class Episode < ApplicationRecord
-  has_many :contribution
-  has_many :cast_member, through: :contribution
+  has_many :contributions
+  has_many :cast_members, through: :contributions
 end

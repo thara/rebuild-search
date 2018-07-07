@@ -1,4 +1,4 @@
 class CastMember < ApplicationRecord
-  has_many :contribution
-  has_many :episode, through: :contribution
+  has_many :contributions
+  has_many :episodes, through: :contributions
 end
