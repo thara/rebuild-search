@@ -1,24 +1,24 @@
-# README
+# Rebuild Search
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Search service for [Rebuild.fm](https://rebuild.fm)'s episodes.
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Ruby 2.4.2
+- Bundler
+- [heroku](https://devcenter.heroku.com/articles/heroku-cli)
 
-* System dependencies
+## Deployment
 
-* Configuration
+    heroku create rebuild-search
+    heroku addons:create heroku-postgresql:hobby-dev
+    heroku addons:add scheduler:standard
+    heroku buildpacks:add --index 1 heroku/nodejs
+    heroku buildpacks:add --index 2 heroku/ruby
 
-* Database creation
+    git push heroku master
+    heroku run rake db:migrate
 
-* Database initialization
+    heroku open
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    heroku addons:open scheduler  # to configure scheduler
