@@ -66,3 +66,6 @@ gem 'materialize-sass'
 gem 'material_icons'
 
 gem 'activerecord-import', '~> 0.15.0'
+
+# https://nvd.nist.gov/vuln/detail/CVE-2018-16468
+gem "loofah", ">= 2.2.3"
