@@ -69,3 +69,5 @@ gem 'activerecord-import', '~> 0.15.0'
 
 # https://nvd.nist.gov/vuln/detail/CVE-2018-16468
 gem "loofah", ">= 2.2.3"
+# https://nvd.nist.gov/vuln/detail/CVE-2018-1000544
+gem "rubyzip", ">= 1.2.2"
